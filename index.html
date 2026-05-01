@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brew & Soul | Artisan Coffee Experience</title>
+  <meta name="description" content="Brew & Soul — An artisan cafe where every cup tells a story. Experience premium hand-crafted coffee in a warm, inviting atmosphere." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ PRELOADER ═══════════════════ -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <svg id="preloader-svg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Cup -->
+        <g id="cup-group" class="cup-group">
+          <!-- Cup body -->
+          <path class="cup-body" d="M210,260 L220,340 C220,355 280,355 280,340 L290,260 Z" fill="#e8dcc8" stroke="#c4a97d" stroke-width="2"/>
+          <!-- Cup handle -->
+          <path class="cup-handle" d="M290,275 C320,275 325,320 290,325" fill="none" stroke="#c4a97d" stroke-width="4" stroke-linecap="round"/>
+          <!-- Saucer -->
+          <ellipse class="saucer" cx="250" cy="345" rx="60" ry="10" fill="#e8dcc8" stroke="#c4a97d" stroke-width="2"/>
+          <!-- Coffee liquid inside cup (animated fill) -->
+          <clipPath id="cup-clip">
+            <path d="M212,262 L221,338 C221,352 279,352 279,338 L288,262 Z"/>
+          </clipPath>
+          <rect id="coffee-fill" x="210" y="340" width="82" height="90" fill="url(#coffeeGradient)" clip-path="url(#cup-clip)"/>
+        </g>
+
+        <!-- Jug/Pitcher -->
+        <g id="jug-group" class="jug-group">
+          <!-- Jug body -->
+          <path class="jug-body" d="M360,100 L350,200 C350,215 410,215 410,200 L400,100 Z" fill="#d4c5a9" stroke="#b8a080" stroke-width="2"/>
+          <!-- Jug handle -->
+          <path class="jug-handle" d="M410,120 C440,120 445,180 410,185" fill="none" stroke="#b8a080" stroke-width="4" stroke-linecap="round"/>
+          <!-- Jug rim/spout -->
+          <path class="jug-spout" d="M355,100 C355,90 360,85 365,90 L350,100" fill="#d4c5a9" stroke="#b8a080" stroke-width="2"/>
+          <ellipse class="jug-top" cx="380" cy="100" rx="24" ry="6" fill="#c4b58f" stroke="#b8a080" stroke-width="1.5"/>
+          <!-- Coffee inside jug -->
+          <clipPath id="jug-clip">
+            <path d="M361,105 L351,198 C351,212 409,212 409,198 L399,105 Z"/>
+          </clipPath>
+          <rect id="jug-coffee" x="349" y="110" width="62" height="110" fill="url(#coffeeGradient)" clip-path="url(#jug-clip)"/>
+        </g>
+
+        <!-- Pouring stream -->
+        <g id="pour-group" class="pour-group">
+          <!-- Perfectly vertical straight pour stream from spout position to cup center -->
+          <path id="pour-stream" d="M250,138 L250.1,260" stroke="url(#pourGradient)" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="200" stroke-dashoffset="200"/>
+          <!-- Drip drops -->
+          <circle class="drip drip-1" cx="250" cy="245" r="3" fill="#6b3e26" opacity="0"/>
+          <circle class="drip drip-2" cx="250" cy="255" r="2" fill="#8b5e3c" opacity="0"/>
+          <circle class="drip drip-3" cx="250" cy="250" r="2.5" fill="#7a4f30" opacity="0"/>
+        </g>
+
+        <!-- Steam wisps (after fill) -->
+        <g id="steam-group" class="steam-group">
+          <path class="steam steam-1" d="M240,255 Q235,235 245,215 Q255,200 245,180" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-linecap="round"/>
+          <path class="steam steam-2" d="M255,252 Q260,230 250,210 Q240,195 255,175" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-linecap="round"/>
+          <path class="steam steam-3" d="M265,256 Q270,240 260,225 Q250,210 265,190" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.8" stroke-linecap="round"/>
+        </g>
+
+        <!-- Gradients -->
+        <defs>
+          <linearGradient id="coffeeGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3e1f0d"/>
+            <stop offset="40%" stop-color="#5c3317"/>
+            <stop offset="100%" stop-color="#8b5e3c"/>
+          </linearGradient>
+          <linearGradient id="pourGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5c3317"/>
+            <stop offset="100%" stop-color="#3e1f0d"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="preloader-text">
+        <span class="preloader-brand">Brew & Soul</span>
+        <span class="preloader-tagline">Crafting your experience...</span>
+        <div class="preloader-progress">
+          <div class="preloader-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MAIN WEBSITE ═══════════════════ -->
+  <div id="main-site" class="main-site hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">
+          <span class="logo-icon">☕</span>
+          <span class="logo-text">Brew <span class="logo-amp">&</span> Soul</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div id="cart-icon-wrapper" class="cart-icon-wrapper">
+            <span class="cart-icon">🛒</span>
+            <span id="cart-badge" class="cart-badge">0</span>
+          </div>
+          <a href="/payment.html" class="nav-cta">Order Now</a>
+          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="hero-particles"></div>
+      </div>
+      <div class="hero-content">
+        <span class="hero-badge" data-animate>Est. 2020</span>
+        <h1 class="hero-title" data-animate>
+          Where Every Cup<br/>
+          <span class="hero-title-accent">Tells a Story</span>
+        </h1>
+        <p class="hero-subtitle" data-animate>
+          Hand-crafted artisan coffee brewed with passion, served with soul.
+          Experience the perfect blend of tradition and innovation.
+        </p>
+        <div class="hero-actions" data-animate>
+          <a href="#menu" class="btn btn-primary">Explore Menu</a>
+          <a href="#about" class="btn btn-outline">Our Story</a>
+        </div>
+        <div class="hero-stats" data-animate>
+          <div class="stat">
+            <span class="stat-number" data-count="50">0</span><span class="stat-plus">+</span>
+            <span class="stat-label">Coffee Blends</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-count="12">0</span><span class="stat-plus">K+</span>
+            <span class="stat-label">Happy Customers</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-count="5">0</span>
+            <span class="stat-label">Years of Love</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <span class="section-label">Our Menu</span>
+          <h2 class="section-title">Signature <span class="accent">Brews</span></h2>
+          <p class="section-desc">Each cup is a masterpiece, hand-crafted by our expert baristas using beans sourced from the world's finest estates.</p>
+        </div>
+
+        <div class="menu-filters" data-animate>
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="hot">Hot</button>
+          <button class="filter-btn" data-filter="cold">Cold</button>
+          <button class="filter-btn" data-filter="specialty">Specialty</button>
+        </div>
+
+        <div class="menu-grid" data-animate>
+          <div class="menu-card" data-category="hot">
+            <div class="card-image">
+              <img src="/images/latte.png" alt="Velvet Latte" loading="lazy"/>
+              <div class="card-badge">Popular</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Velvet Latte</h3>
+              <p class="card-desc">Silky steamed milk over a double shot of our signature espresso blend</p>
+              <div class="card-footer">
+                <span class="card-price">$5.50</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="hot">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=300&fit=crop" alt="Classic Espresso" loading="lazy"/>
+              <div class="card-badge hot">Classic</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Classic Espresso</h3>
+              <p class="card-desc">Pure, bold, and unforgettable — a double shot of liquid gold</p>
+              <div class="card-footer">
+                <span class="card-price">$4.00</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="hot">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop" alt="Caramel Cappuccino" loading="lazy"/>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Caramel Cappuccino</h3>
+              <p class="card-desc">Velvety foam kissed with house-made caramel and Ceylon cinnamon</p>
+              <div class="card-footer">
+                <span class="card-price">$6.00</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="cold">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop" alt="Iced Mocha Bliss" loading="lazy"/>
+              <div class="card-badge cold">Iced</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Iced Mocha Bliss</h3>
+              <p class="card-desc">Rich chocolate melted into cold brew, topped with whipped cream</p>
+              <div class="card-footer">
+                <span class="card-price">$6.50</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="specialty">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop" alt="Lavender Honey Latte" loading="lazy"/>
+              <div class="card-badge specialty">New</div>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Lavender Honey Latte</h3>
+              <p class="card-desc">Floral lavender infusion with wildflower honey and oat milk</p>
+              <div class="card-footer">
+                <span class="card-price">$7.00</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-category="cold">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&h=300&fit=crop" alt="Cold Brew Tonic" loading="lazy"/>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Cold Brew Tonic</h3>
+              <p class="card-desc">Sparkling tonic water meets smooth cold brew — refreshingly unique</p>
+              <div class="card-footer">
+                <span class="card-price">$5.50</span>
+                <button class="card-btn">+ Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image" data-animate>
+            <div class="about-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&h=750&fit=crop" alt="Brew & Soul Cafe Interior" loading="lazy"/>
+              <div class="about-img-accent"></div>
+            </div>
+            <div class="about-experience">
+              <span class="exp-number">5</span>
+              <span class="exp-text">Years of<br/>Excellence</span>
+            </div>
+          </div>
+          <div class="about-content" data-animate>
+            <span class="section-label">Our Story</span>
+            <h2 class="section-title">Passion in <span class="accent">Every Pour</span></h2>
+            <p class="about-text">
+              Born from a simple dream — to create a space where coffee isn't just a drink, 
+              but an experience. At Brew & Soul, we source the finest single-origin beans 
+              from sustainable farms across Ethiopia, Colombia, and Guatemala.
+            </p>
+            <p class="about-text">
+              Our baristas are artisans, trained in the subtle craft of extraction, 
+              temperature, and timing. Every cup is a testament to our relentless pursuit 
+              of perfection.
+            </p>
+            <div class="about-features">
+              <div class="feature">
+                <div class="feature-icon">🌿</div>
+                <div>
+                  <h4>Sustainably Sourced</h4>
+                  <p>100% ethical, eco-friendly beans</p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✨</div>
+                <div>
+                  <h4>Hand-Crafted Daily</h4>
+                  <p>Fresh roasts every morning</p>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">❤️</div>
+                <div>
+                  <h4>Made with Love</h4>
+                  <p>Passion in every single cup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Banner -->
+    <section class="testimonial-banner">
+      <div class="container">
+        <div class="testimonial-content" data-animate>
+          <span class="quote-icon">"</span>
+          <blockquote class="testimonial-quote">
+            The best coffee I've ever had. Brew & Soul doesn't just serve coffee — 
+            they serve an experience that touches the soul.
+          </blockquote>
+          <div class="testimonial-author">
+            <span class="author-name">— Sarah Mitchell</span>
+            <span class="author-title">Food Critic, The Daily Brew</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info" data-animate>
+            <span class="section-label">Get in Touch</span>
+            <h2 class="section-title">Visit <span class="accent">Us</span></h2>
+            <p class="contact-text">
+              We'd love to welcome you. Drop by for a cup, or reach out — we're always happy to chat.
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <div>
+                  <h4>Location</h4>
+                  <p>123 Artisan Lane, Brooklyn, NY 11201</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">🕐</span>
+                <div>
+                  <h4>Hours</h4>
+                  <p>Mon–Fri: 7AM – 9PM<br/>Sat–Sun: 8AM – 10PM</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div>
+                  <h4>Email</h4>
+                  <p>hello@brewandsoul.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form-wrapper" data-animate>
+            <form id="contact-form" class="contact-form">
+              <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" placeholder="Your Email" required />
+              </div>
+              <div class="form-group">
+                <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="footer-logo">☕ Brew <span class="logo-amp">&</span> Soul</span>
+            <p>Where every cup tells a story. Hand-crafted artisan coffee, brewed with love.</p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+              </a>
+              <a href="#" class="social-link" aria-label="Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="#hero">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div class="footer-links">
+            <h4>Visit Us</h4>
+            <p>123 Artisan Lane<br/>Brooklyn, NY 11201</p>
+            <p>hello@brewandsoul.com</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Brew & Soul. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Cart Notification -->
+    <div id="cart-notification" class="cart-notification">
+      <span class="notification-icon">✨</span>
+      <span class="notification-text">Added to Cart!</span>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

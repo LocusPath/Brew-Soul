@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | Brew & Soul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .payment-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-dark);
+      padding: 40px 24px;
+    }
+
+    .payment-container {
+      width: 100%;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      background: var(--bg-card);
+      backdrop-filter: blur(40px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+      animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+    }
+
+    .order-summary {
+      border-right: 1px solid var(--border);
+      padding-right: 40px;
+    }
+
+    .payment-form-section {
+      padding-left: 20px;
+    }
+
+    .payment-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      color: var(--text-secondary);
+    }
+
+    .summary-item.total {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .payment-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn-pay {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--bg-dark);
+      width: 100%;
+      height: 52px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: none;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .btn-pay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(196, 162, 101, 0.3);
+    }
+
+    .status-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      z-index: 10;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s;
+    }
+
+    .status-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: #27ae60;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      margin-bottom: 24px;
+      transform: scale(0);
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .active .success-icon {
+      transform: scale(1);
+    }
+
+    .back-home {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .back-home:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 991px) {
+      .payment-container {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+      .order-summary {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-right: 0;
+        padding-bottom: 40px;
+      }
+      .payment-form-section {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="payment-wrapper">
+    <div class="payment-container">
+      
+      <!-- Order Summary -->
+      <div class="order-summary">
+        <h2 class="payment-title">Order Summary</h2>
+        <div class="summary-list">
+          <div class="summary-item">
+            <span>Velvet Latte x 2</span>
+            <span>$11.00</span>
+          </div>
+          <div class="summary-item">
+            <span>Classic Espresso x 1</span>
+            <span>$4.00</span>
+          </div>
+          <div class="summary-item">
+            <span>Taxes & Fees</span>
+            <span>$1.50</span>
+          </div>
+          <div class="summary-item total">
+            <span>Total</span>
+            <span>$16.50</span>
+          </div>
+        </div>
+        <a href="/" class="back-home">← Return to Store</a>
+      </div>
+
+      <!-- Payment Form -->
+      <div class="payment-form-section">
+        <h2 class="payment-title">Card Details</h2>
+        <form id="payment-form">
+          <div class="form-group">
+            <label>Cardholder Name</label>
+            <input type="text" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label>Card Number</label>
+            <input type="text" placeholder="4532 1029 3348 2938" required />
+          </div>
+          <div class="payment-row">
+            <div class="form-group">
+              <label>Expiry (MM/YY)</label>
+              <input type="text" placeholder="12/28" required />
+            </div>
+            <div class="form-group">
+              <label>CVC</label>
+              <input type="text" placeholder="***" required />
+            </div>
+          </div>
+          <button type="submit" id="pay-btn" class="btn-pay">
+            <span class="btn-text">Pay $16.50</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Status Overlay -->
+      <div id="status-overlay" class="status-overlay">
+        <div class="success-icon">✓</div>
+        <h2 class="payment-title">Success!</h2>
+        <p style="color: var(--text-secondary); text-align: center;">Your order has been placed successfully.</p>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">Order #12849204</p>
+        <button onclick="window.location.href='/'" class="btn-pay" style="width: 200px; margin-top: 40px;">
+          Explore More
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/src/payment.js" type="module"></script>
+</body>
+</html>

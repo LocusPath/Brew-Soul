@@ -95,7 +95,7 @@
     <!-- Navigation -->
     <nav id="navbar" class="navbar">
       <div class="nav-container">
-        <a href="#" class="nav-logo">
+        <a href="#hero" class="nav-logo">
           <span class="logo-icon">☕</span>
           <span class="logo-text">Brew <span class="logo-amp">&</span> Soul</span>
         </a>
@@ -180,7 +180,7 @@
         <div class="menu-grid" data-animate>
           <div class="menu-card" data-category="hot">
             <div class="card-image">
-              <img src="/images/latte.png" alt="Velvet Latte" loading="lazy"/>
+              <img src="https://i.pinimg.com/736x/9b/2a/c3/9b2ac351fb05ef138e03b4d0054a2c03.jpg" alt="Velvet Latte" loading="lazy"/>
               <div class="card-badge">Popular</div>
             </div>
             <div class="card-content">
@@ -434,6 +434,30 @@
     <div id="cart-notification" class="cart-notification">
       <span class="notification-icon">✨</span>
       <span class="notification-text">Added to Cart!</span>
+    </div>
+
+    <!-- Cart Drawer Backdrop -->
+    <div id="cart-drawer-backdrop" class="cart-drawer-backdrop"></div>
+
+    <!-- Cart Drawer Panel -->
+    <div id="cart-drawer" class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>Your Cart</h3>
+        <button id="cart-drawer-close" class="cart-drawer-close" aria-label="Close cart">&times;</button>
+      </div>
+      <div id="cart-drawer-items" class="cart-drawer-items">
+        <!-- Cart items will be dynamically rendered here -->
+      </div>
+      <div class="cart-drawer-footer">
+        <div class="cart-total-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="cart-drawer-actions">
+          <button id="cart-clear-btn" class="btn btn-outline btn-full">Clear Cart</button>
+          <a href="/payment.html" id="cart-checkout-btn" class="btn btn-primary btn-full">Checkout</a>
+        </div>
+      </div>
     </div>
   </div>
 
